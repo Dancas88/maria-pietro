@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maria & Pietro — Il Grande Giorno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8D5A3;
+      --rose: #C97A7A;
+      --cream: #FAF6F0;
+      --dark: #3A2E28;
+      --muted: #8C7B6E;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--cream);
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: fixed;
+      width: 10px;
+      height: 14px;
+      border-radius: 80% 20% 80% 20%;
+      opacity: 0.25;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.25; }
+      90%  { opacity: 0.2; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .ornament {
+      color: var(--gold);
+      font-size: 22px;
+      letter-spacing: 10px;
+      margin-bottom: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .pre-title {
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    .names {
+      font-size: clamp(48px, 10vw, 80px);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.1;
+      font-style: italic;
+    }
+
+    .amp {
+      font-style: normal;
+      color: var(--gold);
+      padding: 0 0.1em;
+    }
+
+    .divider {
+      width: 140px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 1.6rem auto;
+    }
+
+    .location {
+      font-size: 15px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pin {
+      width: 12px;
+      height: 12px;
+      fill: var(--rose);
+      opacity: 0.8;
+      flex-shrink: 0;
+    }
+
+    .countdown-grid {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 72px;
+    }
+
+    .num {
+      font-size: clamp(44px, 9vw, 70px);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -1px;
+    }
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    .sep {
+      font-size: 40px;
+      color: var(--gold-light);
+      font-weight: 300;
+      align-self: flex-start;
+      margin-top: 10px;
+      user-select: none;
+    }
+
+    .message {
+      font-size: 18px;
+      color: var(--muted);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 400px;
+      min-height: 3.4em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease;
+    }
+
+    .message.fade-out { opacity: 0; }
+    .message.fade-in  { opacity: 1; }
+
+    .hearts {
+      color: var(--rose);
+      opacity: 0.4;
+      font-size: 14px;
+      letter-spacing: 8px;
+      margin-top: 1.2rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .container > * {
+      animation: fadeIn 0.9s ease both;
+    }
+    .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .container > *:nth-child(2) { animation-delay: 0.15s; }
+    .container > *:nth-child(3) { animation-delay: 0.25s; }
+    .container > *:nth-child(4) { animation-delay: 0.35s; }
+    .container > *:nth-child(5) { animation-delay: 0.45s; }
+    .container > *:nth-child(6) { animation-delay: 0.55s; }
+    .container > *:nth-child(7) { animation-delay: 0.65s; }
+    .container > *:nth-child(8) { animation-delay: 0.75s; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="ornament">✦ ✦ ✦</div>
+    <div class="pre-title">il conto alla rovescia</div>
+
+    <div class="names">
+      Maria <span class="amp">&amp;</span> Pietro
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="location">
+      <svg class="pin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
+      Palizzi
+    </div>
+
+    <div class="countdown-grid">
+      <div class="unit"><span class="num" id="days">—</span><span class="label">giorni</span></div>
+      <div class="sep">·</div>
+      <div class="unit"><span class="num" id="hours">—</span><span class="label">ore</span></div>
+      <div class="sep">·</div>
+      <div class="unit"><span class="num" id="minutes">—</span><span class="label">minuti</span></div>
+      <div class="sep">·</div>
+      <div class="unit"><span class="num" id="seconds">—</span><span class="label">secondi</span></div>
+    </div>
+
+    <div class="message" id="message">
+      Ogni istante che passa ci avvicina al giorno più bello.
+    </div>
+
+    <div class="hearts">♥ ♥ ♥</div>
+  </div>
+
+  <script>
+      // ── Data esatta delle nozze ─────────────────────────────────────────
+    const weddingDate = new Date("2027-04-24T11:00:00");
+    // ────────────────────────────────────────────────────────────────────
+
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const diff = weddingDate - new Date();
+      if (diff <= 0) {
+        ['days','hours','minutes','seconds'].forEach(id => {
+          document.getElementById(id).textContent = '00';
+        });
+        return;
+      }
+      document.getElementById('days').textContent    = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent   = pad(Math.floor((diff % 86400000) / 3600000));
+      document.getElementById('minutes').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      document.getElementById('seconds').textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    // Frasi rotanti
+    const phrases = [
+      "Ogni istante che passa ci avvicina al giorno più bello.",
+      "L'amore non si conta in giorni, ma i giorni lo rendono ancora più dolce.",
+      "Presto direte sì davanti a tutti — e noi non vediamo l'ora.",
+      "Il conto alla rovescia più romantico dell'ufficio.",
+      "Mancano ancora un po'… ma l'attesa fa parte della magia.",
+      "Due cuori, una data, infinite emozioni.",
+      "Qualcuno in ufficio è già più emozionato degli sposi.",
+      "Palizzi vi aspetta. Noi anche.",
+      "Ogni secondo che passa, un petalo cade e un sogno si avvicina.",
+      "Non è solo un matrimonio. È il vostro matrimonio.",
+      "Stiamo già scegliendo l'outfit per il ricevimento.",
+      "Amore, riso e qualche lacrima di gioia — ci siamo quasi.",
+      "Ogni tramonto ci porta più vicini al vostro sì.",
+      "C'è qualcosa di magico nell'aria. Si chiama amore.",
+      "Due strade che si incontrano, per non separarsi mai più.",
+      "Il tempo vola, ma questo momento vogliamo viverlo fino in fondo.",
+      "Presto il mondo saprà quello che i vostri cuori già sanno.",
+      "Stiamo già piangendo e non è ancora successo niente.",
+      "Il buffet si avvicina. Stiamo già digiunando.",
+      "Chi ha già scelto il vestito? (Chiediamo per un amico.)",
+      "Mancano ancora un po' di giorni. E un paio di liste di regali.",
+      "Gli sposi sono pronti. Gli invitati… ci stiamo lavorando.",
+      "Il fotografo è prenotato. Il discorso del testimone, meno.",
+      "Come i fiumi trovano il mare, anche voi avete trovato casa.",
+      "Non è un traguardo. È un inizio.",
+      "Tutto ciò che è bello ha bisogno di tempo. Anche questo.",
+      "Ci sono giorni che cambiano tutto. Questo è uno di quelli.",
+    ];
+
+    let currentIndex = Math.floor(Math.random() * phrases.length);
+    const msgEl = document.getElementById('message');
+    msgEl.textContent = phrases[currentIndex];
+
+    setInterval(() => {
+      msgEl.classList.add('fade-out');
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % phrases.length;
+        msgEl.textContent = phrases[currentIndex];
+        msgEl.classList.remove('fade-out');
+      }, 800);
+    }, 6000);
+
+    // Petali cadenti
+    const colors = ['#C9A84C','#C97A7A','#B8936A','#D4A06A'];
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.background = colors[i % colors.length];
+      p.style.animationDuration  = (7 + Math.random() * 10) + 's';
+      p.style.animationDelay     = (Math.random() * 15) + 's';
+      p.style.transform          = 'rotate(' + (Math.random() * 360) + 'deg)';
+      document.body.appendChild(p);
+    }
+  </script>
+</body>
+</html>
